@@ -1,4 +1,4 @@
-## kotlin-testcontainers-demo
+# kotlin-testcontainers-demo
 
 A PoC about using [Testcontainers](https://www.testcontainers.org/) and Kotlin to test a stream application with
 external dependencies.
