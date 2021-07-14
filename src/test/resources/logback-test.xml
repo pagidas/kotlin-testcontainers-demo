@@ -1,0 +1,33 @@
+<configuration>
+
+    <!-- APPENDERS -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%cyan(%d{HH:mm:ss.SSS}) %white([%thread]) %highlight(%-5level) %magenta(%logger{36}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <!-- LOGGERS -->
+    <logger name="org.example.demo.FileIOApi" level="DEBUG" />
+    <logger name="org.example.demo.UploadFileEventProcessor" level="DEBUG" />
+    <logger name="org.example.demo.UploadFileEventsTestProducer" level="DEBUG" />
+    <logger name="org.example.demo.UploadFileSuccessEventsTestConsumer" level="DEBUG" />
+    <logger name="org.example.demo.UploadFileFailureEventsTestConsumer" level="DEBUG" />
+    <logger name="org.example.demo.Application" level="DEBUG" />
+    <logger name="org.testcontainers" level="INFO"/>
+    <logger name="com.github.dockerjava" level="WARN"/>
+
+    <!-- OFF -->
+    <!-- Comment switched off kafka logs if you need more logging! -->
+<!--    <logger name="org.apache.kafka" level="OFF"/>-->
+    <logger name="org.apache.kafka.clients.admin" level="OFF"/>
+    <logger name="org.apache.kafka.common.utils.AppInfoParser" level="OFF"/>
+    <logger name="org.apache.kafka.clients.consumer.ConsumerConfig" level="OFF"/>
+    <logger name="org.apache.kafka.clients.producer.ProducerConfig" level="OFF"/>
+    <logger name="org.apache.kafka.clients.Metadata" level="OFF"/>
+    <logger name="org.apache.kafka.streams.StreamsConfig" level="OFF"/>
+</configuration>

@@ -1,0 +1,76 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+}
+
+group 'org.example.demo'
+version '1.0'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://packages.confluent.io/maven/' }
+}
+
+dependencies {
+    // Kotlin
+    implementation platform("org.jetbrains.kotlin:kotlin-bom")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "org.jetbrains.kotlin:kotlin-reflect"
+
+    // TypesafeConfig
+    implementation "com.typesafe:config:$typesafeVersion"
+
+    // Kafka
+    implementation "org.apache.kafka:kafka-streams:$kafkaVersion"
+
+    // aws s3
+    implementation "com.amazonaws:aws-java-sdk-core:$awsSdkCoreVersion"
+    implementation "software.amazon.awssdk:s3:$s3Version"
+
+    // Http4k
+    implementation platform("org.http4k:http4k-bom:$http4kVersion")
+    implementation "org.http4k:http4k-multipart"
+    implementation "org.http4k:http4k-client-apache"
+
+    // Jackson
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
+
+    // Slf4JLogging
+    implementation "org.slf4j:slf4j-api:$slf4jVersion"
+
+    // Logback
+    compile "ch.qos.logback:logback-core:$logbackVersion"
+    runtimeOnly "ch.qos.logback:logback-classic:$logbackVersion"
+
+    // Test //
+    testImplementation "org.jetbrains.kotlin:kotlin-test"
+
+    // Testcontainers
+    implementation platform("org.testcontainers:testcontainers-bom:$testContainersVersion")
+    testImplementation "org.testcontainers:kafka"
+    testImplementation "org.testcontainers:mockserver"
+
+    // MockServer
+    implementation "org.mock-server:mockserver-client-java:$mockServerVersion"
+
+    // Awaitility
+    testImplementation "org.awaitility:awaitility:$awaitilityVersion"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "11"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "11"
+}
+
+test {
+    // junit5
+    useJUnitPlatform()
+
+    // logging
+    testLogging {
+        exceptionFormat "full"
+        events "started", "skipped", "passed", "failed"
+        showStandardStreams true
+    }
+}
